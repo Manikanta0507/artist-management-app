@@ -1,3 +1,9 @@
+# How to run this app
+
+While installing node modules if there is any issue from @mui/styles then use the following command
+
+### `npm install --force`
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

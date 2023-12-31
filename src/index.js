@@ -1,14 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+import { RouteWrapper } from './components/RouteWrapper';
 import reportWebVitals from './reportWebVitals';
+import { ContextWrapper } from './store/index';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <ContextWrapper>
+    <RouteWrapper />
+  </ContextWrapper>
 );
 
 // If you want to start measuring performance in your app, pass a function
