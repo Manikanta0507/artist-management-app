@@ -613,7 +613,7 @@ export const artists = [
                 composer: 'Ed Sheeran',
                 producer: 'Ed Sheeran',
                 productionDate: '2017',
-                awards: 'Radio Disney Music Award for Best Crush Song 2018, Teen Choice Award for Choice Single: Male Artist 2018, MuchMusic Video Award for Single of the Year 2018',
+                awards: 'Radio Disney Music Award for Best Crush Song 2018, Teen Choice Award for Choice Single: Male Artist 2018',
                 lyrics: [
                     'I found a love, for me',
                     'Darling, just dive right in and follow my lead',

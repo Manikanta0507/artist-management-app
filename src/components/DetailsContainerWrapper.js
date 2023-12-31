@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useParams, useSearchParams } from "react-router-dom";
 import { Context } from '../store';
-import DetailsContainer from './detailsContainer';
+import DetailsContainer from './DetailsContainer';
 
 function DetailsContainerWrapper() {
-  const [data, dispatch] = useContext(Context);
+  const [,dispatch] = useContext(Context);
   const params = useParams();
   const [searchParams] = useSearchParams();
   const [songId, setSongId] = useState('');

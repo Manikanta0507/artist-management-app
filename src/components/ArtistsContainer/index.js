@@ -2,17 +2,31 @@ import React, { Fragment, useContext, useState } from 'react';
 import { Button, Grid, Dialog, DialogTitle, DialogActions, DialogContent, DialogContentText, TextField, Typography } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import { Add, Delete, Person, Flag, CalendarMonth, Photo } from '@mui/icons-material';
-import { UserCard } from './userCard';
-import { Context } from '../store';
+import { UserCard } from '../UserCard';
+import { Context } from '../../store';
 
 const useStyles = makeStyles((theme) => ({
     inputField: {
-        margin: '2rem 0'
+        margin: '0.5rem 0 !important'
     },
     artistContainer: {
         overflowY: 'auto',
         height: '93vh',
-        padding: '1rem 1rem 1rem 3rem'
+        padding: '1rem 1rem 1rem 3rem !important',
+        backgroundColor: "#eaeaea",
+    },
+    buttonsContainer: {
+        padding: 0,
+        margin: '0 0 10px 0',
+        borderRadius: 10,
+        width: '100%'
+    },
+    addButton: {
+        marginRight: '10px !important',
+        backgroundColor: '#fff !important'
+    },
+    removeButton: {
+        backgroundColor: '#fff !important'
     }
 }));
 
@@ -70,7 +84,8 @@ export const ArtistContainer = () => {
                 artists: [...data.artists, artistObj],
                 show: true,
                 message: `Artist ${formData["name"]} Added Successfully`,
-                alertType: 'success'
+                alertType: 'success',
+                artistId: ''
             });
             handleClose(null, 'cancel');
         } else {
@@ -106,7 +121,7 @@ export const ArtistContainer = () => {
                 <DialogContent>
                     <DialogContentText>
                         <Typography color={hasError ? 'red' : 'black'}>
-                            Please fill all the fields to add a new artist to the list
+                            Please fill all the required fields to add a new artist to the list
                         </Typography>
                     </DialogContentText>
                     <Grid container>
@@ -121,7 +136,7 @@ export const ArtistContainer = () => {
                                 variant="outlined"
                                 value={formData.name}
                                 onChange={(event) => handleFieldChange('name', event.target.value)}
-                                style={{ margin: '0.5rem 0' }}
+                                className={classes.inputField}
                                 InputProps={{
                                     endAdornment: <Person />
                                 }}
@@ -138,7 +153,7 @@ export const ArtistContainer = () => {
                                 variant="outlined"
                                 value={formData.nationality}
                                 onChange={(event) => handleFieldChange('nationality', event.target.value)}
-                                style={{ margin: '0.5rem 0' }}
+                                className={classes.inputField}
                                 InputProps={{
                                     endAdornment: <Flag />
                                 }}
@@ -156,7 +171,7 @@ export const ArtistContainer = () => {
                                 variant="outlined"
                                 value={formData.age}
                                 onChange={(event) => handleFieldChange('age', event.target.value)}
-                                style={{ margin: '0.5rem 0' }}
+                                className={classes.inputField}
                                 InputProps={{
                                     endAdornment: <CalendarMonth />
                                 }}
@@ -166,13 +181,13 @@ export const ArtistContainer = () => {
                             <TextField
                                 id="profileUrl"
                                 label="ProfilePicUrl"
-                                placeholder="21"
+                                placeholder="https://reservemystar.com/wp-content/uploads/2022/05/Armman-Malik.jpg"
                                 type="text"
                                 fullWidth
                                 variant="outlined"
                                 value={formData.profileUrl}
                                 onChange={(event) => handleFieldChange('profileUrl', event.target.value)}
-                                style={{ margin: '0.5rem 0' }}
+                                className={classes.inputField}
                                 InputProps={{
                                     endAdornment: <Photo />
                                 }}
@@ -189,15 +204,11 @@ export const ArtistContainer = () => {
                     <Button variant={'outlined'} color='error' onClick={() => handleClose(null, 'cancel')}>Cancel</Button>
                 </DialogActions>
             </Dialog>
-            <Grid item xs="auto" sm={4} className={'artistContainer'} style={{
-                overflowY: 'auto',
-                height: '93vh',
-                padding: '1rem 1rem 1rem 3rem'
-            }}>
+            <Grid item xs="auto" sm={4} className={classes.artistContainer}>
                 {data.artists.length ? data.artists.map(artist => <UserCard {...artist} handleClick={handleArtistClick} isSelected={data.artistId === artist.id} />) : "Add an artist"}
-                <Grid container spacing={0} style={{ padding: 0, margin: '0 0 10px 0', borderRadius: 10, width: '100%' }}>
-                    <Button variant={'outlined'} endIcon={<Add />} style={{ marginRight: 10, backgroundColor: '#fff' }} onClick={handleAddArtist}>Add Artist</Button>
-                    <Button variant={'outlined'} endIcon={<Delete />} style={{ backgroundColor: '#fff' }} color='error' onClick={handleRemoveArtist}>Remove Artist</Button>
+                <Grid container spacing={0} className={classes.buttonsContainer}>
+                    <Button variant={'outlined'} endIcon={<Add />} className={classes.addButton} onClick={handleAddArtist}>Add Artist</Button>
+                    <Button variant={'outlined'} endIcon={<Delete />} className={classes.removeButton} color='error' onClick={handleRemoveArtist}>Remove Artist</Button>
                 </Grid>
             </Grid>
         </Fragment>
